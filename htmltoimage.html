@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="h2c.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+        integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <title>Document</title>
+
+    <style>
+        body {
+            background-color: #373737;
+            color: #fff;
+        }
+
+        #myElement {
+            height: 50px;
+            width: 50px;
+            background-color: beige;
+            margin-bottom: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- put your HTML in div#myElement -->
+    <div>My Element:</div>
+    <div id="myElement">
+    </div>
+
+    <!-- image output -->
+    <div>Output:</div>
+    <img src="" id="image">
+
+    <script language="javascript">
+        $(document).ready(function () {
+            element_to_png("myElement", "image")
+        });
+
+        function element_to_png(srcElementID, targetIMGid) {
+            console.log("element_to_png called for element id " + srcElementID);
+            html2canvas($("#" + srcElementID)[0]).then(function (canvas) {
+                var myImage = canvas.toDataURL("image/png");
+                $("#" + targetIMGid).attr("src", myImage);
+                console.log("html2canvas completed.  png rendered to " + targetIMGid);
+            });
+        }
+    </script>
+</body>
+
+</html>
